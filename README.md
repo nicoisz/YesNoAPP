@@ -1,6 +1,6 @@
 # YesNoAPP
 
-Aplicacion de YesNo, un chat que responde ante preguntas  del tipo si y no.
+Aplicacion de YesNo hecha con FLUTTER, un chat que responde ante preguntas  del tipo si y no.
 
 ## Roadmap
 
