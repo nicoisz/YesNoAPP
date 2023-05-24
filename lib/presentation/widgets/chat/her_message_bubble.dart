@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:yesnoapp/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+  Message message;
+
+  HerMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+
+    
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -13,25 +18,43 @@ class HerMessageBubble extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               color: colors.secondary, borderRadius: BorderRadius.circular(20)),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              "Hola mundo.",
-              style: TextStyle(color: Colors.white),
+              finalText(message.text.toString()) as String,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
         const SizedBox(
           height: 5,
         ),
-        _ImageBulbble(),
-        SizedBox(height: 10)
+        _ImageBulbble(message),
+        const SizedBox(height: 10)
       ],
     );
   }
 }
 
+finalText(String text) {
+      final String finalText;
+
+      switch (text) {
+        case 'yes':
+          return finalText = 'si';
+        case 'no':
+          return finalText = 'no';
+        case 'maybe':
+          return finalText = 'tal vez';
+      }
+   
+}
+
 class _ImageBulbble extends StatelessWidget {
+  Message message;
+
+  _ImageBulbble(Message this.message);
+
   @override
   Widget build(BuildContext context) {
     final Size = MediaQuery.of(context).size;
@@ -41,7 +64,7 @@ class _ImageBulbble extends StatelessWidget {
         child: Image.network(
           width: Size.width * 0.5,
           height: 150,
-          "https://yesno.wtf/assets/yes/10-271c872c91cd72c1e38e72d2f8eda676.gif",
+          message.url.toString(),
           loadingBuilder: (context, child, loadingProgress) {
             if (loadingProgress == null) return child;
             return Container(
